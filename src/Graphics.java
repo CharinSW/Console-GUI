@@ -1,4 +1,7 @@
-public class Graphics {
+import java.util.ArrayList;
+
+public class Graphics
+{
     private String[][] pixels;
     private String full;
     private String empty;
@@ -17,6 +20,13 @@ public class Graphics {
         all_empty();
         update();
     }
+
+    public int get_width()  {return width;}
+    public int get_height() {return height;}
+    
+    // Note that the return values below will be truncated to a whole number
+    public int get_center_width() {return width/2;}
+    public int get_center_height() {return height/2;}
 
 
     public void all_empty()
@@ -91,6 +101,17 @@ public class Graphics {
             }
 
             count_row++;
+        }
+    }
+
+    public void render(ArrayList<ArrayList<Integer>> arr, int x, int y)
+    {
+        for (int row = 0; row < arr.size(); row++)
+        {
+            for (int column = 0; column < arr.get(row).size(); column++)
+            {
+                pixels[row + y][arr.get(row).get(column) + x] = full;
+            }
         }
     }
 }
